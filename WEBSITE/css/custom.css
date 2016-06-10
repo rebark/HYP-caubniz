@@ -30,8 +30,29 @@ h1, h2, h3, h4, h5, h6 {
        padding: 5px;
    }
 
+.navbar {
+    margin-bottom: 0px;
+}
+
 .dropdown-menu {
       font-size: 12px;
+}
+
+.breadcrumb{
+    width: 100%;
+    top: 50px;
+    left:0px;
+    margin-bottom: 0px;
+    position: absolute;
+}
+
+.back{
+    margin-top: 20px;
+}
+
+#description img {
+    max-width: 100%;
+    margin: 10px;
 }
 
 /*

@@ -1,6 +1,7 @@
 <?php
 
-     $cat = $_POST['cat'];
+
+    $par = $_POST['cat'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
@@ -12,7 +13,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT id, name, shortDescription, image FROM SL WHERE subId=1 "; //change to cat when you know how to do it
+        $query = " SELECT id, name, short_description, category, subcat, image, active FROM SL WHERE category='$par' AND subcat IS NULL OR subcat ='yes'";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available
