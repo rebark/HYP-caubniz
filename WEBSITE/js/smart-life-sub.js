@@ -38,7 +38,6 @@ function ready(){
                 el += drawElement(i);
             }
 
-            //$("").append(bd);
             $("#items-here").html(el);
         },
         error: function(request,error)

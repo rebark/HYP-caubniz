@@ -21,7 +21,7 @@ function ready(){
             var el = "";
 
             //write breadcrumb
-            var bd = "<ol class='breadcrumb'style='margin-bottom: 20px;''><li class='active'>Smart Life</a></li></ol>";
+            var bd = "<li class='active'>Smart Life</a></li>";
             $("#bd").html(bd);
 
             //write the title

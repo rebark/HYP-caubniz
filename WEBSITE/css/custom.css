@@ -3,7 +3,7 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
- html {
+html {
     position: relative;
     height: 100%;
 }
@@ -48,6 +48,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .back{
     margin-top: 20px;
+}
+.compatible img{
+    max-height: 20px;
 }
 
 #description img {

@@ -35,11 +35,11 @@ function ready(){
 
             $("#bd").html(bd);
             $("back").html(back);
-            $("title").html(item[0].name);
+            $("titlepage").html(item[0].name);
 
             $("#description").html("<h3>" + item[0].subtitle +"</h3><img src='" + item[0].image_desc +"'>" + item[0].description );
 
-            $("activation").html(item[0].activation);
+            $("activation").html(item[0].activation + "<a href='compatible-devices.html?service=" + service +"'> compatible devices </a>");
             $("rules").html(item[0].rules);
 
         },
