@@ -1,0 +1,51 @@
+/* PROJECTS
+------------------------- */
+.project-divider {
+  margin: 50px 0;
+}
+
+.project-heading {
+    margin-top: 45px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.pic {
+    margin-top: 5px;
+    text-align: center;
+}
+
+.pic img {
+    width: 75%;
+}
+
+
+/* SL THUMBNAIL
+------------------------- */
+.caption {
+    height: 180px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#description img {
+    max-width: 80%;
+    margin: 10px;
+}
+
+/* SL pages
+------------------------- */
+.download img{
+    max-height: 30px;
+    margin-right: 10px;
+}
+
+.download img{
+    max-height: 40px;
+    margin-right: 10px;
+}
+
+.side-caption{
+    margin-top: 75px;
+}

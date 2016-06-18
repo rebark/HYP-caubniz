@@ -14,7 +14,7 @@ header('Access-Control-Allow-Origin: *');
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT id, name, short_description, category, subcat, image, active FROM SL WHERE category='$par' AND subcat IS NULL OR subcat ='yes'";
+        $query = " SELECT id, name, short_description, category, subcat, image, active FROM SL WHERE category='$par' AND (subcat='$par' OR subcat ='yes')";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available

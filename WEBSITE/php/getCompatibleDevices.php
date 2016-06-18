@@ -14,7 +14,7 @@ header('Access-Control-Allow-Origin: *');
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT Name, FrontImage FROM Device WHERE ID_Device IN (SELECT device_id FROM `Device-SL` WHERE SL_id='$par')";
+        $query = " SELECT Name, FrontImage, Active, ID_Device FROM Device WHERE ID_Device IN (SELECT device_id FROM `Device-SL` WHERE SL_id='$par')";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available

@@ -1,7 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 
-    $par = $_POST['service'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
@@ -13,7 +12,7 @@ header('Access-Control-Allow-Origin: *');
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, description, subtitle, par_1, activation, rules, category, subcat, image_desc FROM SL WHERE id='$par'";
+        $query = " SELECT id, name, category, short_description, image FROM Projects ORDER BY id";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available
@@ -31,6 +30,9 @@ header('Access-Control-Allow-Origin: *');
 
         //close connection
         $mysqli->close();
+
+
+
     }
 
 ?>

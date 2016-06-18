@@ -1,6 +1,7 @@
 $(document).ready(ready);
 
 var items; //will store the result of the query
+var set;
 
 function ready(){
     console.log("I'm ready!");
@@ -9,6 +10,39 @@ function ready(){
 
     console.log("sub = " + sub);
 
+    //breadcrumb, go back link and side menu
+    $.ajax({
+        method: "POST",
+        //dataType: "json", //type of data
+        crossDomain: true, //localhost purposes
+        url: "http://caubniz2.altervista.org/php/getSmartLifeSubEnv.php", //Relative or absolute path to file.php file
+        data: {cat:cat},
+
+        success: function(response) {
+            console.log(JSON.parse(response));
+            set = JSON.parse(response);
+            var el = "";
+
+            //write breadcrumb
+            var bd = "<li class='active'>Smart Life</a></li><li><a href=smart-life-cat.html?cat=" + encodeURIComponent(cat) + ">" + cat + "</a></li>";
+            $("#bd").html(bd);
+
+            //write go back link
+            var back = "<a href='smart-life-cat.html?cat=" + encodeURIComponent(cat) +"> << all "+ cat +" services</a>"
+            $("back").html(back);
+
+            //create the side menu for navigation
+            var menu = drawMenu();
+            $("#menu").html(menu);
+
+        },
+        error: function(request,error)
+        {
+            console.log("Error");
+        }
+    });
+
+    // items
     $.ajax({
         method: "POST",
         //dataType: "json", //type of data
@@ -20,18 +54,6 @@ function ready(){
             console.log(JSON.parse(response));
             items = JSON.parse(response);
             var el = "";
-
-            //write breadcrumb
-            var bd = "<li class='active'>Smart Life</a></li><li class='active'>" + cat + "</a></li>";
-            $("#bd").html(bd);
-
-            //write go back link
-            var back = "<a href='smart-life-cat.html?cat=" + encodeURIComponent(cat) +"'> << all "+ cat +" services</a>"
-            $("back").html(back);
-
-            //create the side menu for navigation
-            var menu = drawMenu();
-            $("#menu").html(menu);
 
             //build html part for each item
             for(var i = 0; i < items.length; i++){
@@ -64,9 +86,9 @@ function ready(){
 
     function drawMenu(){
         var menu = "";
-        for (var i = 0; i < items.length; i++){
-            var tmp = items[i].name.replace("&", "&amp;");
-            if (items[i].active == 1){
+        for (var i = 0; i < set.length; i++){
+            var tmp = set[i].name.replace("&", "&amp;");
+            if (set[i].active == 1){
                 var tmp2 = encodeURIComponent(tmp);
                 menu += "<a href='smart-life-sub.html?cat=" + tmp2 + "' class='list-group-item active'>" + tmp + "</a>";
             }

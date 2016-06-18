@@ -46,7 +46,7 @@ function ready(){
 
     function drawElement(i){
         var element = "<div class='col-md-6'><div class='thumbnail'>"+
-        "<img src='" + items[i].image + "'><div class='caption'><h4>"
+        "<img src='" + items[i].image + "'><div class='caption' style='margin:10px; height:auto;'><h4>"
         + items[i].name + "</h4><p>" + items[i].short_description + "</p>";
 
         //disable links if they are not implemented
