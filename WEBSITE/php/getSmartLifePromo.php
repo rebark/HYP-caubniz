@@ -1,7 +1,5 @@
 <?php
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
@@ -13,7 +11,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT id, name, short_description, category, subcat, image, active FROM SL WHERE category='$par1' AND subcat='$par2'";
+       $query = "SELECT id, name, image, promo, active  FROM SL WHERE promo IS NOT NULL";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available
@@ -37,3 +35,4 @@
     }
 
 ?>
+

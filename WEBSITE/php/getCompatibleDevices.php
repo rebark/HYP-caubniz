@@ -1,6 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-
 
     $par = $_POST['service'];
     //connection to db

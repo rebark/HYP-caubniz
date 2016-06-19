@@ -37,14 +37,19 @@ function ready(){
             $("back").html(back);
             $("titlepage").html(item[0].name);
 
-            var desc = "<div class='container' style='margin-top:20px;>"
+            var desc = "<div class='container' style='margin-top:20px;'>"
             + item[0].par_1 + "<h3>" + item[0].subtitle + "</h3><div class='row'><div class='col-md-7'><img class='img-responsive center-block' src='"
             + item[0].image_desc + "'></div><div class='col-md-5'><p class='lead side-caption'>"
             + item[0].description + "</p></div></div></div>";
 
             $("#description").html(desc);
 
-            var act = "<p>"+item[0].activation + "</p><div class='download col-md-6'><h6>download the app</h6>"+
+            var act = '';
+            if(item[0].promo)
+                act += "<div class='alert alert-success' role='alert'><h5 style='display:inline;'>promo: </h5>" + item[0].promo + "</div>";
+
+
+            act += "<p>"+item[0].activation + "</p><div class='download col-md-6'><h6>download the app</h6>"+
                 "<img src='img/SL/android.png'><img src='img/SL/ios.png'></div><div class='col-md-6'>"+
                 "<h6>start using " + item[0].name +"</h6><button type='button' class='btn btn-default disabled'>subcribe now!</button></div>" +
                 "<a href='compatible-devices.html?service=" + service +"'> compatible devices</a>";

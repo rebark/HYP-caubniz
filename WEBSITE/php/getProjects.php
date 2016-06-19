@@ -1,5 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
 
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");

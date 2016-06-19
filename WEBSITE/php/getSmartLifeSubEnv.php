@@ -1,6 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-
 
     $par1 = $_POST['cat'];
     $par2 = $_POST['sub'];

@@ -1,7 +1,6 @@
 <?php
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
+    $Discount = $_POST['discount'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
@@ -13,7 +12,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT id, name, short_description, category, subcat, image, active FROM SL WHERE category='$par1' AND subcat='$par2'";
+       $query = "SELECT ID_Device, Name, FrontImage, Price, Discount, Active FROM Device WHERE Discount < '$Discount'"; 
         //query execution
         $result = $mysqli->query($query);
         //if there are data available
