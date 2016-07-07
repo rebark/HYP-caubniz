@@ -1,7 +1,6 @@
 <?php
 
-    $par = $_POST['service'];
-    //connection to db
+//connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
     if (mysqli_connect_errno()) { //verify connection
@@ -12,7 +11,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = "SELECT id, name, category, subcat FROM SL WHERE id='$par'";
+        $query = " SELECT * FROM Info ORDER BY id";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available

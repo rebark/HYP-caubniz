@@ -3,6 +3,7 @@ $(document).ready(ready);
 var items; //will store the result of the query
 var set;
 
+
 function ready(){
     console.log("I'm ready!");
     var sub = decodeURIComponent(getPameter('cat'));

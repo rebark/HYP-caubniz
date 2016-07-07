@@ -1,13 +1,18 @@
 $(document).ready(ready);
 
 var items; //will store the result of the query
+localStorage.setItem( 'url', window.location.href);
+localStorage.setItem( 'origin', 'promotions' );
 
+
+console.log("saved url: " + localStorage.getItem('url'));
+console.log("saved origin: " + localStorage.getItem('origin'));
 
 function ready(){
     console.log("I'm ready!");
     var cat = '1';  //sarà da cambiare anche se così funziona
     console.log("cat = " + cat);
-	
+
     //Devices
     $.ajax({
         method: "POST",
@@ -19,22 +24,21 @@ function ready(){
         success: function(response) {
             console.log(JSON.parse(response));
             items = JSON.parse(response);
-            var el = "";
+            var dev='';
 
             //build html part for each item
             for(var i = 0; i < items.length; i++){
-                el += drawDevice(i);
+                dev += drawDevice(i);
             }
 
-
-            $("#content-here").html(el);
+            $('devices').html(dev);
         },
         error: function(request,error)
         {
             console.log("Error");
         }
     });
-    
+
     //SL
     $.ajax({
         method: "POST",
@@ -46,14 +50,15 @@ function ready(){
         success: function(response) {
             console.log(JSON.parse(response));
             items = JSON.parse(response);
-            var el = "";
+            var sl = '';
 
             //build html part for each item
             for(var i = 0; i < items.length; i++){
-                el += drawSL(i);
+                sl += drawSL(i);
             }
 
-            $("#content-here").append(el);
+            $('sl').html(sl);
+
         },
         error: function(request,error)
         {
@@ -62,28 +67,26 @@ function ready(){
     });
 
 
-        function drawDevice(i){     //6/12   md desktop normali in su   lg desktop grandi   xs cellulari  e ce nè una anche per i tablet sm
-            var element = "<div class='col-sm-4'><div class='thumbnail'>"+   //crea tanti rettangolini quanti ne ho bisogno
-            "<img src='" + items[i].FrontImage + "'><div class='caption'><h5>"
-            + items[i].Name + "</h5><div class='caption'><h5>" + items[i].Price*items[i].Discount +"</h5>";
-                                                                  //è un'aggiunta questa
-            //disable links if they are not implemented
-            //active è nel database è un campo che mi dice se il link è attivo o no
+        function drawDevice(i){
+            var element = "<div class='col-sm-6 col-md-4'><div class='thumbnail' style='min-height:420px;'>"+
+            "<img src='" + items[i].FrontImage + "' style='max-height:230px;'><div class='caption'><h5>"
+            + items[i].Name + "</h5><h5><s>" + items[i].Price+"&euro;</s></h5><h5 span style='color:red;'>"
+            + items[i].Price*items[i].Discount +"&euro;</h5>";
+
             if (items[i].Active == 1 ){
-                var tmp = encodeURIComponent(items[i].ID_Device);                    //link messo all'interno del bottone
-                //serve per mettere un link a un pulsante  /pulsantino details sotto ogni imagine di smartphone
-                element += "<p><a href='DEVSpecificDevice.html?cat="+ tmp +"' class='btn btn-primary' role='button'>Details</a></p></div></div></div></div>";
+                var tmp = encodeURIComponent(items[i].ID_Device);
+                element += "<p><a href='DEVSpecificDevice.html?cat="+ tmp +"' class='btn btn-primary' role='button'>Details</a></p></div></div></div>";
             }
             else
-                element += "<p><a href='#' class='btn btn-primary disabled' role='button'>Details</a></p></div></div></div></div>";
+                element += "<p><a href='#' class='btn btn-primary disabled' role='button'>Details</a></p></div></div></div>";
 
             return element;
         }
-        
+
         //SL
         function drawSL(i){
-        var element = "<div class='col-sm-4'><div class='thumbnail'>"+
-        "<img src='" + items[i].image + "' alt=''>"+
+        var element = "<div class='col-sm-6 col-md-4'><div class='thumbnail' style='min-height:420px;'>"+
+        "<img src='" + items[i].image + "'style='margin-top:25px; margin-bottom:25px;'>"+
         "<div class='caption'><h4>" + items[i].name + "</h4><p>" + items[i].promo + "</p>";
 
         //disable links if they are not implemented

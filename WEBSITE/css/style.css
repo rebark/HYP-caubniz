@@ -49,3 +49,12 @@
 .side-caption{
     margin-top: 75px;
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.promo_img{
+    height: 230px;
+}

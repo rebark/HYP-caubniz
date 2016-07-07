@@ -1,11 +1,21 @@
 $(document).ready(ready);
 
 var item; //will store the result of the query
+//retrieve parameters to see if you have to put an extra link
+var url = localStorage.getItem('url');
+var origin = localStorage.getItem('origin');
+
+//reset parameters
+localStorage.setItem('origin', 'reset');
+
+console.log(url);
+console.log(origin);
 
 function ready(){
     console.log("I'm ready!");
     var service = getPameter('service');
     console.log("service = " + service);
+
 
     $.ajax({
         method: "POST",
@@ -20,42 +30,53 @@ function ready(){
             var desc = "";
             var back = "";
             var isCat = (item[0].category == item[0].subcat);
+            var subscribe = (item[0].subscribe == 1);
 
             //write breadcrumb and go back link
             var bd = "<li class='active'>Smart Life</li><li><a href='smart-life-cat.html?cat=";
             if (isCat){
                 bd += encodeURIComponent(item[0].subcat) + "'>" + item[0].subcat.replace("&", "&amp;") + "</a></li>";
-                back = "<a href='smart-life-cat.html?cat=" + encodeURIComponent(item[0].category) +"'> << all "+ item[0].category +" services</a>";
             }
             else{
                 bd += encodeURIComponent(item[0].category) + "'>" + item[0].category.replace("&", "&amp;") + "</a></li>"+
                     "<li><a href='smart-life-sub.html?cat=" + encodeURIComponent(item[0].subcat) + "'>" + item[0].subcat.replace("&", "&amp;") + "</a></li>";
-                back = "<a href='smart-life-sub.html?cat=" + encodeURIComponent(item[0].subcat) +"'> << all "+ item[0].subcat +" services</a>";
+            }
+
+            //if origin is not null, put the link to go to previous page, i.e the index arrow of P-IDM
+            if ( origin !== null && origin !== 'reset'){
+                back = "<a href='" + url +"'> back to " + origin +"</a>";
+                $("back").html(back);
+
             }
 
             $("#bd").html(bd);
-            $("back").html(back);
             $("titlepage").html(item[0].name);
 
-            var desc = "<div class='container' style='margin-top:20px;'>"
-            + item[0].par_1 + "<h3>" + item[0].subtitle + "</h3><div class='row'><div class='col-md-7'><img class='img-responsive center-block' src='"
+            var desc='';
+            //if it's on promo display it
+            if(item[0].promo){
+                desc +=  "<div class='alert alert-success' role='alert'><h5 style='display:inline;'>promo: </h5>" + item[0].promo + "</div>";
+            }
+
+            //if you can subscribe, display button
+            var button_1 = "";
+            if(subscribe){
+                button_1 += "<div class='text-center'><a type='button' class='btn btn-danger text-center' href='subscribe.html'>subcribe now!</a></div>";
+            }
+
+            desc += item[0].par_1 + "<h3>" + item[0].subtitle + "</h3><div class='row'><div class='col-md-7'><img class='img-responsive center-block' src='"
             + item[0].image_desc + "'></div><div class='col-md-5'><p class='lead side-caption'>"
-            + item[0].description + "</p></div></div></div>";
+            + item[0].description +  button_1 +"</p></div></div><div class='container'" + item[0].add_info +"</div>";
 
-            $("#description").html(desc);
+            $("desc").html(desc);
 
-            var act = '';
-            if(item[0].promo)
-                act += "<div class='alert alert-success' role='alert'><h5 style='display:inline;'>promo: </h5>" + item[0].promo + "</div>";
-
-
-            act += "<p>"+item[0].activation + "</p><div class='download col-md-6'><h6>download the app</h6>"+
-                "<img src='img/SL/android.png'><img src='img/SL/ios.png'></div><div class='col-md-6'>"+
-                "<h6>start using " + item[0].name +"</h6><button type='button' class='btn btn-default disabled'>subcribe now!</button></div>" +
-                "<a href='compatible-devices.html?service=" + service +"'> compatible devices</a>";
+            var act = "<p>"+item[0].activation + "</p><div class='row'><div class='download col-md-6'><h6>download the app</h6>"+
+                "<img src='img/SL/android.png'><img src='img/SL/ios.png'></div><div class='col-md-6'><br/>discover all the devices you can use with "
+                + item[0].name +"<br/><a href='compatible-devices.html?service=" +
+                service +"' type='button' class='btn btn-default'> compatible devices</a></div><br/>";
 
             $("activation").html(act);
-            $("rules").html(item[0].rules);
+            $("rules").html("<p>"+ item[0].rules + "</p>");
 
         },
         error: function(request,error)

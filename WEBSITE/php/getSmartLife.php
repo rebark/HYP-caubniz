@@ -12,7 +12,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, description, subtitle, par_1, activation, promo, rules, category, subcat, image_desc FROM SL WHERE id='$par'";
+        $query = " SELECT * FROM SL WHERE id='$par'";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available

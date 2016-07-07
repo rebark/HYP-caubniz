@@ -19,19 +19,18 @@ function ready(){
         success: function(response) {
             console.log(JSON.parse(response));
             env = JSON.parse(response);
+
+            //write breadcrumb
             var bd = "<li class='active'>Smart Life</a></li><li><a href='smart-life-cat.html?cat='"+
                 encodeURIComponent(env[0].category) + "'>" + env[0].category.replace("&", "&amp;") + "</a></li>";
-            var back = "";
 
-
-            if ( ! env[0].category == env[0].subcat){
+            if (  env[0].category !== env[0].subcat){
                 bd += "<li><a href=smart-life-sub.html?cat='"+ encodeURIComponent(env[0].subcat) + "'>" +
                     env[0].subcat.replace("&", "&amp;") + "</a></li>";
             }
-            back += "<a href='smart-life.html?service=" + service +"'> << "+ env[0].name +"</a>";
+            bd += "<li><a href='smart-life.html?service="+ env[0].id +"'>" + env[0].name + "</a></li>";
 
             $("#bd").html(bd);
-            $("back").html(back);
             $("titlepage").html(env[0].name);
 
         },

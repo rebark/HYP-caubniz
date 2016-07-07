@@ -1,0 +1,22 @@
+.caption {
+    height: 180px;
+    overflow: hidden;
+    text-align: center;
+}
+.caption2 {
+    height: 180px;
+    overflow: hidden;
+    text-align: left;
+}
+
+
+#thumbnail .img {
+   { width: 250; height: auto; }
+}
+
+@media(max-width: 550px){
+.mobdiv{display:none;}
+}
+
+img.resized { width: 200px; height: auto; }
+
