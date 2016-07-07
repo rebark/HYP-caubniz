@@ -1,5 +1,4 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
 
     $par = $_POST['cat'];
 //connection to db
