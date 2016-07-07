@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
-<widget xmlns     = "http://www.w3.org/ns/widgets"
-        xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.helloworld"
-        version   = "1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.example" versionCode="10" version="1.0">
+    <plugin name="cordova-plugin-whitelist" />
+       <access origin="*" />
+       <allow-intent href="*" />
 
-    <name>Caubniz</name>
+       <name>caubniz2</name>
 
-    <description>
-        HYP project 2015-2016
-    </description>
+       <description>
+           HYP project 2015-2016
+       </description>
 
+       <platform name="android" />
+       <platform name="ios" />
 
-    <!-- Define app icon for each platform. -->
-    <icon src="img/icon.png" />
-
-    <access origin="*"/>
-    <allow-intent href="*" />
-
-    <platform name="android"></platform>
-    <platform name="ios"></platform>
-
-</widget>
+       <icon src="img/icon.png" />
+   </widget>
