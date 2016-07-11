@@ -2,7 +2,8 @@ $(document).ready(ready);
 
 var items; //will store the result of the query
 var set;
-
+//reset parameters
+localStorage.setItem('origin', 'reset');
 
 function ready(){
     console.log("I'm ready!");
@@ -77,10 +78,10 @@ function ready(){
 
         //disable links if they are not implemented
         if (items[i].active == 1 ){
-            element += "<p><a href='smart-life.html?service=" + items[i].id + "' class='btn btn-primary' role='button'>View More</a></p></div></div></div>";
+            element += "<p><a href='smart-life.html?service=" + items[i].id + "' class='btn btn-primary' role='button'>Details</a></p></div></div></div>";
         }
         else
-            element += "<p><a href='#' class='btn btn-primary disabled' role='button'>View More</a></p></div></div></div>";
+            element += "<p><a href='#' class='btn btn-primary disabled' role='button'>Details</a></p></div></div></div>";
 
         return element;
     }

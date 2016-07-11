@@ -5,9 +5,6 @@ var item; //will store the result of the query
 var url = localStorage.getItem('url');
 var origin = localStorage.getItem('origin');
 
-//reset parameters
-localStorage.setItem('origin', 'reset');
-
 console.log(url);
 console.log(origin);
 
@@ -44,9 +41,8 @@ function ready(){
 
             //if origin is not null, put the link to go to previous page, i.e the index arrow of P-IDM
             if ( origin !== null && origin !== 'reset'){
-                back = "<a href='" + url +"'> back to " + origin +"</a>";
+                back = "<a href='" + url +"' class='local'> back to " + origin +"</a>";
                 $("back").html(back);
-
             }
 
             $("#bd").html(bd);
@@ -103,3 +99,10 @@ function ready(){
         return vars;
     }
 }
+
+$(document).on('click', '.local', function (event) {
+        localStorage.setItem('origin', 'reset');
+
+        console.log("saved url: " + localStorage.getItem('url'));
+        console.log("saved origin: " + localStorage.getItem('origin'));
+    });

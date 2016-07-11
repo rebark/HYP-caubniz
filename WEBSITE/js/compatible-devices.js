@@ -2,6 +2,10 @@ $(document).ready(ready);
 
 var items; //will store the result of the query
 var env;
+var name;
+
+//reset local storage
+localStorage.setItem('origin', 'reset');
 
 function ready(){
     console.log("I'm ready!");
@@ -19,19 +23,19 @@ function ready(){
         success: function(response) {
             console.log(JSON.parse(response));
             env = JSON.parse(response);
-
+            name = env[0].name;
             //write breadcrumb
-            var bd = "<li class='active'>Smart Life</a></li><li><a href='smart-life-cat.html?cat='"+
+            var bd = "<li class='active'>Smart Life</a></li><li><a href='smart-life-cat.html?cat="+
                 encodeURIComponent(env[0].category) + "'>" + env[0].category.replace("&", "&amp;") + "</a></li>";
 
             if (  env[0].category !== env[0].subcat){
-                bd += "<li><a href=smart-life-sub.html?cat='"+ encodeURIComponent(env[0].subcat) + "'>" +
+                bd += "<li><a href='smart-life-sub.html?cat="+ encodeURIComponent(env[0].subcat) + "'>" +
                     env[0].subcat.replace("&", "&amp;") + "</a></li>";
             }
-            bd += "<li><a href='smart-life.html?service="+ env[0].id +"'>" + env[0].name + "</a></li>";
+            bd += "<li><a href='smart-life.html?service="+ env[0].id +"'>" + name + "</a></li>";
 
             $("#bd").html(bd);
-            $("titlepage").html(env[0].name);
+            $("titlepage").html(name);
 
         },
         error: function(request,error)
@@ -70,11 +74,11 @@ function ready(){
 
     function drawElement(i){
         var element = "<div class='col-md-3 col-xs-6'><div class='thumbnail'>"+
-        "<img src='" + items[i].FrontImage + "'><div class='caption' style='height:auto;'><h4>"
-        + items[i].Name + "</h4>";
+        "<img src='" + items[i].FrontImage + "'><div class='caption' style='height:auto;'><h6>"
+        + items[i].Name + "</h6>";
 
         if(items[i].Active == 1)
-            element += "<a href='DEVSpecificDevice.html?cat=" + items[i].ID_Device + "' class='btn btn-primary' role='button'>Details</a></div></div></div>";
+            element += "<a href='DEVSpecificDevice.html?cat=" + items[i].ID_Device + "' class='btn btn-primary local' role='button'>Details</a></div></div></div>";
         else
             element += "<a href='#' class='btn btn-primary disabled' role='button'>Details</a></div></div></div>";
 
@@ -99,3 +103,8 @@ function ready(){
         return vars;
     }
 }
+
+$(document).on('click', '.local', function (event) {
+                localStorage.setItem('url', window.location.href);
+                localStorage.setItem('origin', 'compatible devices with ' + name);
+        });

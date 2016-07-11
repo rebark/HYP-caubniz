@@ -1,16 +1,13 @@
 <?php
-
     $par = $_POST['cat'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
-
     if (mysqli_connect_errno()) { //verify connection
         echo "Error to connect to DBMS: ".mysqli_connect_error(); //notify error
         exit(); //do nothing else
     }
     else {
         //connection ok
-
         # extract results mysqli_result::fetch_array
         $query = " SELECT id, name, short_description, category, subcat, image, active FROM SL WHERE category='$par' AND (subcat='$par' OR subcat ='yes')";
         //query execution
@@ -24,15 +21,9 @@
             }
             echo json_encode($myArray);
         }
-
         //free result
         $result->close();
-
         //close connection
         $mysqli->close();
-
-
-
     }
-
 ?>

@@ -30,7 +30,7 @@
 }
 
 #description img {
-    max-width: 80%;
+    max-width: 70%;
     margin: 10px;
 }
 
@@ -41,11 +41,6 @@
     margin-right: 10px;
 }
 
-.download img{
-    max-height: 40px;
-    margin-right: 10px;
-}
-
 .side-caption{
     margin-top: 75px;
 }
@@ -53,8 +48,4 @@
 .col-centered{
     float: none;
     margin: 0 auto;
-}
-
-.promo_img{
-    height: 230px;
 }

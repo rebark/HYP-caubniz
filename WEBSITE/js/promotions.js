@@ -1,9 +1,6 @@
 $(document).ready(ready);
 
 var items; //will store the result of the query
-localStorage.setItem( 'url', window.location.href);
-localStorage.setItem( 'origin', 'promotions' );
-
 
 console.log("saved url: " + localStorage.getItem('url'));
 console.log("saved origin: " + localStorage.getItem('origin'));
@@ -75,7 +72,7 @@ function ready(){
 
             if (items[i].Active == 1 ){
                 var tmp = encodeURIComponent(items[i].ID_Device);
-                element += "<p><a href='DEVSpecificDevice.html?cat="+ tmp +"' class='btn btn-primary' role='button'>Details</a></p></div></div></div>";
+                element += "<p><a href='DEVSpecificDevice.html?cat="+ tmp +"' class='btn btn-primary local' role='button'>Details</a></p></div></div></div>";
             }
             else
                 element += "<p><a href='#' class='btn btn-primary disabled' role='button'>Details</a></p></div></div></div>";
@@ -91,10 +88,10 @@ function ready(){
 
         //disable links if they are not implemented
         if (items[i].active == 1 ){
-            element += "<p><a href='smart-life.html?service=" + items[i].id + "' class='btn btn-primary' role='button'>View More</a></p></div></div></div>";
+            element += "<p><a href='smart-life.html?service=" + items[i].id + "' class='btn btn-primary local' role='button'>Details</a></p></div></div></div>";
         }
         else
-            element += "<p><a href='#' class='btn btn-primary disabled' role='button'>View More</a></p></div></div></div>";
+            element += "<p><a href='#' class='btn btn-primary disabled' role='button'>Details</a></p></div></div></div>";
 
         return element;
     }
@@ -116,3 +113,11 @@ function ready(){
             return vars;
         }
     }
+
+    $(document).on('click', '.local', function (event) {
+            localStorage.setItem('url', window.location.href);
+            localStorage.setItem('origin', 'promotions');
+
+            console.log("saved url: " + localStorage.getItem('url'));
+            console.log("saved origin: " + localStorage.getItem('origin'));
+        });

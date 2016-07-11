@@ -28,6 +28,7 @@ h1, h2, h3, h4, h5, h6 {
    padding: 5px;
    }
 
+
 .navbar {
     margin-bottom: 0px;
 }
@@ -111,5 +112,16 @@ footer {
         padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
     }
 
-
  }
+
+
+@media screen and (max-width:768px){
+    h1{
+       font-size: 28px;
+    }
+
+    .back {
+        margin-top: 35px;
+    }
+
+}

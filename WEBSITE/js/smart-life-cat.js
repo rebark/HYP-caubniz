@@ -1,7 +1,9 @@
 $(document).ready(ready);
-
+console.log("I'm ready1!");
 var items; //will store the result of the query
 
+//reset parameters
+localStorage.setItem('origin', 'reset');
 
 function ready(){
     console.log("I'm ready!");
