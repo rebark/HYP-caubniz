@@ -1,8 +1,7 @@
-<?php
+<?php header('Access-Control-Allow-Origin: *');
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
-//connection to db
+     $category = $_POST['category'];
+     //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
     if (mysqli_connect_errno()) { //verify connection
@@ -13,7 +12,9 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, active FROM SL WHERE category='$par1' AND subcat='yes'";
+        $query = " SELECT `id_assistance_service`,`Assistance Service`.`name`, `category`, `subcategory`, `active_in_dropdown`, `Assistance Subcategory`.`Image`, `Short_Description`,
+         `Assistance Subcategory`.`Active`  FROM `Assistance Service` JOIN `Assistance Subcategory` ON `Assistance Service`.`subcategory`=`Assistance Subcategory`.`Name`
+         WHERE `category`='$category' ORDER BY `id_assistance_service`";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available
@@ -27,7 +28,7 @@
         }
 
         //free result
-        $result->close();
+        //$result->close();
 
         //close connection
         $mysqli->close();

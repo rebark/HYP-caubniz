@@ -1,8 +1,7 @@
 <?php
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
-//connection to db
+    $par = $_POST['service'];
+    //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
     if (mysqli_connect_errno()) { //verify connection
@@ -13,7 +12,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, active FROM SL WHERE category='$par1' AND subcat='yes'";
+        $query = " SELECT Name, FrontImage, Active, ID_Device FROM Device WHERE ID_Device IN (SELECT `id_device` FROM `Device - Assistance` WHERE `Device - Assistance`.`id_assistance_service`='$par')";
         //query execution
         $result = $mysqli->query($query);
         //if there are data available
@@ -35,5 +34,3 @@
 
 
     }
-
-?>

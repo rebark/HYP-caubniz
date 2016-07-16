@@ -1,7 +1,7 @@
 <?php
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
+
+     $IdDev = $_POST['iddev'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
@@ -13,7 +13,11 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, active FROM SL WHERE category='$par1' AND subcat='yes'";
+       
+        $query = "SELECT `Device`.*, `Device-SL`.*,`Device - Assistance`.*,`SL`.name,`Assistance Service`.name AS `assname`, `Assistance Service`.category, `Assistance Service`.id_assistance_service
+        FROM ((((`Device` LEFT JOIN `Device-SL` ON `Device`.`ID_Device`=`Device-SL`.`device_id`)
+       LEFT JOIN `Device - Assistance` ON  `Device`.`ID_Device`=`Device - Assistance`.`id_device`)  LEFT JOIN `SL` ON `Device-SL`.`SL_id`=`SL`.`id`) LEFT JOIN `Assistance Service` ON `Assistance Service`.`id_assistance_service`=`Device - Assistance`.`id_assistance_service`)WHERE `Device`.`ID_Device`= '$IdDev'";
+
         //query execution
         $result = $mysqli->query($query);
         //if there are data available

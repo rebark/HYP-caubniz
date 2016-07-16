@@ -1,8 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
-//connection to db
+    //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
     if (mysqli_connect_errno()) { //verify connection
@@ -13,21 +12,23 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, active FROM SL WHERE category='$par1' AND subcat='yes'";
+        $query = " SELECT `name`, `image`, `highlight_description`, `active_in_dropdown` FROM `Assistance Service` WHERE `highlight`='1'";
         //query execution
         $result = $mysqli->query($query);
+        //print_r($result);
+        //var_dump($result);
         //if there are data available
         if($result->num_rows >0)
         {
             $myArray = array();//create an array
             while($row = $result->fetch_array(MYSQL_ASSOC)) {
-                $myArray[] = $row;
+                $myArray[] = $row; //array_map('utf8_encode',$row);
             }
             echo json_encode($myArray);
         }
 
         //free result
-        $result->close();
+        //$result->close();
 
         //close connection
         $mysqli->close();

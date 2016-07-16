@@ -1,7 +1,6 @@
 <?php
 
-    $par1 = $_POST['cat'];
-    $par2 = $_POST['sub'];
+     $type = $_POST['type'];
 //connection to db
     $mysqli = new mysqli("localhost", "caubniz2", "", "my_caubniz2");
 
@@ -13,7 +12,7 @@
         //connection ok
 
         # extract results mysqli_result::fetch_array
-        $query = " SELECT name, active FROM SL WHERE category='$par1' AND subcat='yes'";
+       $query = "SELECT ID_Device, Name, FrontImage, Price, Discount, Brand, Operative_System AS 'os', Active FROM Device WHERE Type IN ('$type')"; 
         //query execution
         $result = $mysqli->query($query);
         //if there are data available

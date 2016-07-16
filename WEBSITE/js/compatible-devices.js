@@ -3,36 +3,45 @@ $(document).ready(ready);
 var items; //will store the result of the query
 var env;
 var name;
+var src;
+var bd;
 
 //reset local storage
 localStorage.setItem('origin', 'reset');
 
 function ready(){
     console.log("I'm ready!");
-    var service = getPameter('service');
-    console.log("service = " + service);
+    var parameters = getPameter();
+    var service = parameters['service'];
+    src = parameters['src'];
+
+    src = getPameter('src');
+    if (src == 'sl'){
+        var url1 = "http://caubniz2.altervista.org/php/getCompatibleDevicesEnv.php";
+        var url2 = "http://caubniz2.altervista.org/php/getCompatibleDevices.php";
+    }else {
+        var url1 = "http://caubniz2.altervista.org/php/getCompatibleDevicesEnvAS.php";
+        var url2 = "http://caubniz2.altervista.org/php/getCompatibleDevicesAs.php";
+    }
 
     // sets up the breadcrumbs, go back link and title page
     $.ajax({
         method: "POST",
         //dataType: "json", //type of data
         crossDomain: true, //localhost purposes
-        url: "http://caubniz2.altervista.org/php/getCompatibleDevicesEnv.php", //Relative or absolute path to file.php file
+        url: url1, //Relative or absolute path to file.php file
         data: {service:service},
 
         success: function(response) {
             console.log(JSON.parse(response));
             env = JSON.parse(response);
             name = env[0].name;
-            //write breadcrumb
-            var bd = "<li class='active'>Smart Life</a></li><li><a href='smart-life-cat.html?cat="+
-                encodeURIComponent(env[0].category) + "'>" + env[0].category.replace("&", "&amp;") + "</a></li>";
+            var bd;
 
-            if (  env[0].category !== env[0].subcat){
-                bd += "<li><a href='smart-life-sub.html?cat="+ encodeURIComponent(env[0].subcat) + "'>" +
-                    env[0].subcat.replace("&", "&amp;") + "</a></li>";
-            }
-            bd += "<li><a href='smart-life.html?service="+ env[0].id +"'>" + name + "</a></li>";
+            if (src == 'sl')
+                bd = envSL();
+            else
+                bd = envASS();
 
             $("#bd").html(bd);
             $("titlepage").html(name);
@@ -50,7 +59,7 @@ function ready(){
         method: "POST",
         //dataType: "json", //type of data
         crossDomain: true, //localhost purposes
-        url: "http://caubniz2.altervista.org/php/getCompatibleDevices.php", //Relative or absolute path to file.php file
+        url: url2, //Relative or absolute path to file.php file
         data: {service:service},
 
         success: function(response) {
@@ -83,6 +92,28 @@ function ready(){
             element += "<a href='#' class='btn btn-primary disabled' role='button'>Details</a></div></div></div>";
 
         return element;
+    }
+
+    function envSL(){
+        bd = "<li class='active'>Smart Life</a></li><li><a href='smart-life-cat.html?cat="+
+            encodeURIComponent(env[0].category) + "'>" + env[0].category.replace("&", "&amp;") + "</a></li>";
+
+        if (  env[0].category !== env[0].subcat){
+            bd += "<li><a href='smart-life-sub.html?cat="+ encodeURIComponent(env[0].subcat) + "'>" +
+                env[0].subcat.replace("&", "&amp;") + "</a></li>";
+        }
+        bd += "<li><a href='smart-life.html?service="+ env[0].id +"'>" + name + "</a></li>";
+
+        return bd;
+    }
+
+    function envASS(){
+        bd = "<li class='active'>Assistance Services</a></li><li><a href='assistance-service-cat.html?category="+
+               encodeURIComponent(env[0].category) + "'>" + env[0].category.replace("&", "&amp;") + "</a></li>";
+
+        bd += "<li><a href='assistance-service.html?service="+ env[0].name +"'>" + env[0].name + "</a></li>";
+
+        return bd;
     }
 
 

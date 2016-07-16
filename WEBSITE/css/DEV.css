@@ -9,7 +9,15 @@
     text-align: left;
 }
 
-
+.caption3 {
+    height: 300px;
+ overflow: hidden;
+    text-align: center;
+}
+#breadnone{
+color:#ffffff;
+background-color:#0a3760;
+}
 #thumbnail .img {
    { width: 250; height: auto; }
 }
