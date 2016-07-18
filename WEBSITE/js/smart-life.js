@@ -67,8 +67,8 @@ function ready(){
             $("desc").html(desc);
 
             var act = "<p>"+item[0].activation + "</p><div class='row'><div class='download col-md-6'><h6>download the app</h6>"+
-                "<img src='img/SL/android.png'><img src='img/SL/ios.png'></div><div class='col-md-6'><br/>discover all the devices you can use with "
-                + item[0].name +"<br/><a href='compatible-devices.html?service=" +
+                "<img src='img/SL/android.png'><img src='img/SL/ios.png'></div><div class='col-md-6'><h6>discover all the devices you can use with "
+                + item[0].name +"</h6><a href='compatible-devices.html?service=" +
                 service +"&src=sl' type='button' class='btn btn-default'> compatible devices</a></div><br/>";
 
             $("activation").html(act);
