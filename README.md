@@ -7,7 +7,7 @@
 
 **Template:** none
 
-The design project is available in the design folder. Mind that the html file doesn't work in google chrome, but it works in firefox.
+The P-IDM schema pdf contains only the P-IDM schema of the design project with the explanation of the new symbols we introduced (as required by the technology project specification). For a more detailed explanation of the design decision and the C-IDM and L-IDM see the ppt file delivered on Beep.
 
 
 
