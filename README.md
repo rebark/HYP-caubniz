@@ -9,6 +9,11 @@
 
 The P-IDM schema pdf contains only the P-IDM schema of the design project with the explanation of the new symbols we introduced (as required by the technology project specification). For a more detailed explanation of the design decision and the C-IDM and L-IDM see the ppt file delivered on Beep.
 
+## Design
+La cartella design contiene la consegna della prima parte del progetto:
++ il file html generato da pencil funziona se aperto con firefox o Edge (mentre non visualizza le immagini in Chrome)
++ il file di pencil quando aperto per la prima volta apre un progetto vuoto, per visualizzarlo bisogna andare in document-->open e selezionare il file del progetto
+
 
 
 ## Changes and improvements from Design Project
